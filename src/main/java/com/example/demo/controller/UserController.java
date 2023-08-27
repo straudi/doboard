@@ -40,4 +40,9 @@ public class UserController {
         userRepository.deleteById(id);
         return id;
     }
+
+    @GetMapping("/hello")
+    public String test() {
+        return "Hello, world!";
+    }
 }
