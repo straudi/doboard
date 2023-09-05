@@ -1,5 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
+function BackDataTest(props){
+    return <p>백엔드에서 가져온 데이터입니다 : {props.text} </p>
+}
 
 function App() {
   const [hello, setHello] = useState('')
@@ -12,7 +15,7 @@ function App() {
 
   return (
       <div>
-        백엔드에서 가져온 데이터입니다 : {hello}
+        <BackDataTest text={hello}></BackDataTest>
       </div>
   );
 }
