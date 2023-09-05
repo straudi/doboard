@@ -1,5 +1,7 @@
 package com.example.demo.admin.controller;
 
+import com.example.demo.admin.domain.User;
+import com.example.demo.admin.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

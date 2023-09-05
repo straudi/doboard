@@ -1,4 +1,4 @@
-package com.example.demo.admin.controller;
+package com.example.demo.admin.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
