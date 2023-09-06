@@ -1,0 +1,15 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<table>
+    <thead>
+    <tr>
+        <th>포인트아이디</th>
+        <th>아이디</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="point : ${pointList}">
+        <td th:text="${point.po_id}"></td>
+        <td th:text="${point.mb_id}"></td>
+    </tr>
+    </tbody>
+</table>

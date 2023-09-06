@@ -7,6 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
+@Table(name="kh_point")
 public class Point {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,7 +33,6 @@ public class Point {
 
     @Column(length = 20)
     private String po_rel_id;
-
 
     @Column(length = 255)
     private String po_rel_action;
