@@ -1,78 +1,66 @@
 package com.example.demo.admin.controller;
 
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
 
-/*
-import org.thymeleaf.spring5.SpringTemplateEngine;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
-import server.email.entity.MailMessage;
-import server.user.service.UserService;
-import javax.mail.MessagingException;
-import javax.mail.internet.MimeMessage;
- */
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 
-
-
-@Slf4j
-@Service
-@RequiredArgsConstructor
+@RequestMapping(value = "/api")
 public class MailService {
-/*
-    private final JavaMailSender javaMailSender;
-    private final SpringTemplateEngine templateEngine;
-
-    private final UserService userService;
-
-    public String sendMail(EmailMessage emailMessage, String type) {
-        String authNum = createCode();
-
-        MimeMessage mimeMessage = javaMailSender.createMimeMessage();
-
-        if (type.equals("password")) userService.SetTempPassword(emailMessage.getTo(), authNum);
-
-        try {
-            MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, false, "UTF-8");
-            mimeMessageHelper.setTo(emailMessage.getTo()); // 메일 수신자
-            mimeMessageHelper.setSubject(emailMessage.getSubject()); // 메일 제목
-            mimeMessageHelper.setText(setContext(authNum, type), true); // 메일 본문 내용, HTML 여부
-            javaMailSender.send(mimeMessage);
-
-            log.info("Success");
-
-            return authNum;
-
-        } catch (MessagingException e) {
-            log.info("fail");
-            throw new RuntimeException(e);
-        }
+    private MailMessage mailMessage;
+    @GetMapping("/{mail}")
+    public String getMail(@PathVariable String mail){
+        /*
+        - GET요청
+           - 입력한 데이터를  URL에 붙혀서 전송을 한다 -> 데이터가 다 보임으로 취약
+           - 전송할 수 있는 데이터는 256바이트를 넘기지 못한다.
+           - 캐싱을 할 수 있다.
+           - 동일한 get요청은 항상 동일한 응답을 보내야 한다.
+        */
+        return mail;
     }
 
-    // 인증번호 및 임시 비밀번호 생성 메서드
-    public String createCode() {
-        Random random = new Random();
-        StringBuffer key = new StringBuffer();
-
-        for (int i = 0; i < 8; i++) {
-            int index = random.nextInt(4);
-
-            switch (index) {
-                case 0: key.append((char) ((int) random.nextInt(26) + 97)); break;
-                case 1: key.append((char) ((int) random.nextInt(26) + 65)); break;
-                default: key.append(random.nextInt(9));
-            }
-        }
-        return key.toString();
+    @PostMapping("/{mail}")
+    public String postMail(@PathVariable String mail) {
+        /*
+        - POST요청
+            - 입력한 데이터를 본분안에 포함해서 전송(URL에 대이터가 보이지 않음으로 GET보다 보안에 우수)
+            - 전송할 수 있는 데이터 길이의 제한이 없다.
+            - 복잡한 형태의 데이터를 보낼 수 있다.
+            - 캐시할 수 없다
+            - 동일한 post요청이라도 다른 응답을 보낼 수 있다.
+        */
+        return mail;
     }
 
-    // thymeleaf를 통한 html 적용
-    public String setContext(String code, String type) {
-        Context context = new Context();
-        context.setVariable("code", code);
-        return templateEngine.process(type, context);
+    @PutMapping("/")
+    public void putMail() {
+        /*
+         - PUT요청
+            - URI에 해당하는 데이터를 새로 만들거나 수정할 때 사용
+            - URI에 보내는 데이터에 해당하는 리소스를 지칭하고 post같은 경우에는 처리할 리소스를 지칭
+            - 동일한 put요청은 동일한  응답을 보낸다.
+        */
     }
- */
+
+    @DeleteMapping("/{mail}")
+    public String deleteMail(@PathVariable String mail) {
+        /*
+          -DELETE요청
+            - URI에 해당하는 리소스를 삭제할 때 사용한다.
+            - 동일한 delete요청은 동일한  응답을 보낸다.
+        */
+        return mail;
+    }
+
+    @PatchMapping("/{mail}")
+    public String patchMail(@PathVariable String mail) {
+        /*
+          - PATCH요청
+             - URI에서 자원의 일부를 업데이트
+             - 기존 엔티티와 새 데이터만 보냄
+             - 동일한 patch요청은 동일한  응답을 보낸다.
+        */
+        return mail;
+    }
 }

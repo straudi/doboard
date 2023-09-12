@@ -1,16 +1,22 @@
 package com.example.demo.admin.controller;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 
 
-@Getter
-@Setter
-@Builder
+
+@Controller
 public class MailMessage {
     private String addressee;
     private String title;
     private String content;
+
+    @GetMapping("/mailwrite")
+    public String MailMessage(Model model) {
+        model.addAttribute("mailtitle","메일제목");
+        return "mail_from";
+    }
 
 }
