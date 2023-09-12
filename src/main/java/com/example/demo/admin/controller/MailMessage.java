@@ -16,6 +16,7 @@ public class MailMessage {
     @GetMapping("/mailwrite")
     public String MailMessage(Model model) {
         model.addAttribute("mailtitle","메일제목");
+        /* 테스트 */
         return "mail_from";
     }
 
