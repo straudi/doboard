@@ -4,19 +4,21 @@ package com.example.demo.admin.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
+import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
+@RequestMapping("/mail")
 public class MailMessage {
-    private String addressee;
-    private String title;
-    private String content;
+    private String mailaddress;
+    private String mailtitle;
+    private String mailcontent;
 
-    @GetMapping("/mailwrite")
+    @GetMapping("/write")
     public String MailMessage(Model model) {
-        model.addAttribute("mailtitle","메일제목");
-        /* 테스트 */
+        model.addAttribute("mailaddress",mailaddress);
+        model.addAttribute("mailtitle",mailtitle);
+        model.addAttribute("mailcontent",mailcontent);
         return "mail_from";
     }
 
