@@ -3,6 +3,10 @@ package com.example.demo.admin.domain;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.time.LocalDateTime;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -22,8 +26,8 @@ public class Point {
     @Column
     private Integer po_use_point;
 
-    @Column(length = 100)
-    private String po_expired;
+    @Column(length = 4)
+    private Integer po_expired;
 
     @Column
     private Integer po_mb_point;
@@ -36,5 +40,15 @@ public class Point {
 
     @Column(length = 255)
     private String po_rel_action;
+
+    @Column
+    private String po_content;
+
+    @Column
+    @UpdateTimestamp
+    private LocalDateTime po_datetime;
+
+    @Column
+    private Date po_expired_date;
 
 }
