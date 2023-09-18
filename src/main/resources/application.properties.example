@@ -1,0 +1,6 @@
+
+spring.jpa.hibernate.ddl-auto=update
+
+spring.devtools.restart.enabled = true
+spring.devtools.restart.additional-exclude = static/**,public/**
+spring.thymeleaf.prefix=classpath:/templates/
